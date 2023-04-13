@@ -10,6 +10,8 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  console.log({ secret: process.env.secret });
+
   await app.listen(8000);
 }
 bootstrap();
