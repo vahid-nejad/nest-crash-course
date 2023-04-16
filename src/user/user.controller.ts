@@ -7,6 +7,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
+import { JwtGuard } from 'src/auth/guards/jwt-auth.guard';
 
 import { CommentService } from 'src/comment/comment.service';
 import { CreateUserDto } from './dto/createUserDto';
@@ -29,6 +30,7 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @UseGuards(JwtGuard)
   @Get(':id/comments')
   getUserComment(@Param('id') id: string) {
     return this.commentService.findUserComments(id);
